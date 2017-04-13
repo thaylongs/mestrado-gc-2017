@@ -5,7 +5,7 @@
 
 	<groupId>br.uff.ic</groupId>
 	<artifactId>mestrado-gc-2017</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0</version>
 	<packaging>war</packaging>
 
 	<name>mestrado-gc-2017</name>
@@ -22,6 +22,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+        <javers.version>3.1.0</javers.version>
 	</properties>
 
 	<dependencies>
@@ -58,6 +59,15 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- JAVERS dependencies -->
+		<!-- https://mvnrepository.com/artifact/org.javers/javers-spring-boot-starter-sql -->
+		<dependency>
+			<groupId>org.javers</groupId>
+			<artifactId>javers-spring-boot-starter-sql</artifactId>
+			<version>${javers.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -68,6 +78,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 </project>
