@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,20 +40,22 @@ public class TesteJaversController {
         StringBuilder html = new StringBuilder("<html><head></head><body><p class='paragraph'>OldButGold</p></body></html>");
         TesteJavers teste = new TesteJavers(1L, html.toString());
         teste = repository.save(teste);
-        javers.commit("teste de commit", teste);
+        javers.commit("autor", teste);
 
         teste.setValue("<html><head></head><body><p class='paragraph'>OldButBold</p></body></html>");
         teste = repository.save(teste);
-        javers.commit("teste de modificação", teste);
+        javers.commit("autor", teste);
 
         return new ResponseEntity<TesteJavers>(teste, HttpStatus.OK);
     }
 
     @ResponseBody
     @GetMapping("/all")
-    public ResponseEntity<List<CdoSnapshot>> getAll(){
+    public ResponseEntity<List<String>> getAll(){
         List<CdoSnapshot> snapshots = javers.findSnapshots(
                 QueryBuilder.byInstanceId(1L,TesteJavers.class).limit(2).build());
-        return new ResponseEntity<List<CdoSnapshot>>(snapshots, HttpStatus.OK);
+        List<String> states = new ArrayList<>(2);
+        snapshots.forEach(cdoSnapshot -> states.add(cdoSnapshot.getState().getPropertyValue("value").toString()));
+        return new ResponseEntity<List<String>>(states, HttpStatus.OK);
     }
 }
