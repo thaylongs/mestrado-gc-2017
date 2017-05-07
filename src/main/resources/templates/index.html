@@ -19,17 +19,22 @@
             <div class="brand-square brand-logo">
                 <i class="fa fa-universal-access fa-fw" aria-hidden="true"></i>
             </div>
-            <div class="input-wrapper col m6">
+            <div class="input-wrapper col m4">
                 <div class="input-field">
-                    <input id="document_name" type="text"/>
+                    <input id="document_name" type="text" th:maxlength="35"/>
                     <label for="document_name">Nome do documento</label>
                 </div>
             </div>
-            <ul class="nav-links right col m6">
+            <div class="messages col m3">
+                <span class="message-info">Mensagem do sistema</span>
+            </div>
+            <ul class="nav-links right col m5">
                 <li><a th:href="@{/}">Opção 1</a></li>
                 <li><a th:href="@{/}">Opção 2</a></li>
-                <li><a th:href="@{/}">Opção 3</a></li>
-                <li><button id="btn-save-document" class="waves-effect waves-light btn">Ação</button></li>
+                <li><button id="btn-save-document" class="waves-effect waves-light btn blue">
+                    <i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i>
+                    Salvar documento
+                </button></li>
             </ul>
         </div>
     </nav>
