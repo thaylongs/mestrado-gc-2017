@@ -23,6 +23,9 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
         <javers.version>3.1.0</javers.version>
+		<jquery.version>2.2.4</jquery.version>
+		<font-awesome.version>4.7.0</font-awesome.version>
+		<materializecss.version>0.98.2</materializecss.version>
 	</properties>
 
 	<dependencies>
@@ -66,6 +69,28 @@
 			<groupId>org.javers</groupId>
 			<artifactId>javers-spring-boot-starter-sql</artifactId>
 			<version>${javers.version}</version>
+		</dependency>
+
+		<!-- Dependências de Front-end -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-locator</artifactId>
+			<version>LATEST</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>jquery</artifactId>
+			<version>${jquery.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>font-awesome</artifactId>
+			<version>${font-awesome.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>materializecss</artifactId>
+			<version>${materializecss.version}</version>
 		</dependency>
 
 	</dependencies>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html th:lang="${#locale.language}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="spring-boot, java, webapp"/>
+    <meta name="author" content="Guilherme Alves"/>
+
+    <title>exame-inclusivo</title>
+    <th:block th:replace="libscss"/>
+    <th:block th:replace="libsjs"/>
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper row">
+            <div class="brand-square brand-logo">
+                <i class="fa fa-universal-access fa-fw" aria-hidden="true"></i>
+            </div>
+            <div class="input-wrapper col m6">
+                <div class="input-field">
+                    <input id="document_name" type="text"/>
+                    <label for="document_name">Nome do documento</label>
+                </div>
+            </div>
+            <ul class="nav-links right col m6">
+                <li><a th:href="@{/}">Opção 1</a></li>
+                <li><a th:href="@{/}">Opção 2</a></li>
+                <li><a th:href="@{/}">Opção 3</a></li>
+                <li><button id="btn-save-document" class="waves-effect waves-light btn">Ação</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="section" role="editor" aria-labelledby="ckeditorForm">
+        <form id="ckeditorForm">
+            <textarea name="ckeditor" id="ckeditor" rows="10" cols="80"/>
+        </form>
+    </section>
+</body>
+</html>
