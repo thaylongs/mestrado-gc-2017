@@ -19,7 +19,7 @@ public class IndexController {
 
     @GetMapping
     public String getLayout(){
-        logger.info("Acessando controlador temporário do layout");
+        logger.info("Acessando controlador index");
         return "index";
     }
 }
