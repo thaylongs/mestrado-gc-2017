@@ -45,3 +45,8 @@ nav {
 .section{
     padding-top:5px!important;
 }
+
+.message-info{
+    font-size: 0.9em;
+    color: #969696;
+}
