@@ -26,6 +26,7 @@
 		<jquery.version>2.2.4</jquery.version>
 		<font-awesome.version>4.7.0</font-awesome.version>
 		<materializecss.version>0.98.2</materializecss.version>
+        <animatecss.version>3.5.2</animatecss.version>
 	</properties>
 
 	<dependencies>
@@ -92,6 +93,11 @@
 			<artifactId>materializecss</artifactId>
 			<version>${materializecss.version}</version>
 		</dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>animate.css</artifactId>
+            <version>${animatecss.version}</version>
+        </dependency>
 
 	</dependencies>
 
