@@ -16,24 +16,24 @@
 <body>
     <nav>
         <div class="nav-wrapper row">
-            <div class="brand-square brand-logo">
+            <div class="brand-square brand">
                 <i class="fa fa-universal-access fa-fw" aria-hidden="true"></i>
             </div>
-            <div class="input-wrapper col m4">
+            <div class="input-wrapper col m4 s12">
                 <div class="input-field">
                     <input id="document_name" type="text" th:maxlength="35"/>
-                    <label for="document_name">Nome do documento</label>
+                    <label id="document_name_label" for="document_name">Nome do documento</label>
                 </div>
             </div>
-            <div class="messages col m3">
-                <span class="message-info">Última revisão salva em dd/MM/YYYY : hh:mm</span>
+            <div class="messages col m3 s12">
+                <span id="document_message" class="message-info"></span>
             </div>
-            <ul class="nav-links right col m5">
+            <ul class="nav-links right col m5 s12">
                 <li><a th:href="@{/}">Histórico</a></li>
-                <li><a th:href="@{/}">Comparar revisões</a></li>
+                <li><a th:href="@{/}">Revisões</a></li>
                 <li><button id="btn-save-document" class="waves-effect waves-light btn blue">
                     <i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i>
-                    Salvar documento
+                    Salvar
                 </button></li>
             </ul>
         </div>

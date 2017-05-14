@@ -1,10 +1,9 @@
 package br.uff.ic.entity;
 
-import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
-import java.time.LocalDate;
 
 /**
  * Created by guilherme on 07/05/17.
@@ -12,37 +11,45 @@ import java.time.LocalDate;
 @Entity
 public class Documento implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "doc_id")
     private long identificador;
 
-    @Column
-    @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
-    private LocalDate dataModificacao;
+    @Column(name = "doc_datamodificacao")
+    private String dataModificacao;
 
-    @Column
+    @Column(name = "doc_titulo")
+    private String titulo;
+
+    @Column(name = "doc_conteudo")
     private String conteudo;
 
     public Documento() {
     }
 
-    public Documento(LocalDate dataModificacao) {
-        this(dataModificacao, null);
+    public Documento(String dataModificacao) {
+        this(dataModificacao, null, null);
     }
 
-    public Documento(LocalDate dataModificacao, String conteudo) {
+    public Documento(String dataModificacao, String conteudo) {
+        this(dataModificacao, conteudo, null);
+    }
+
+    public Documento(String dataModificacao, String titulo, String conteudo) {
         this.dataModificacao = dataModificacao;
+        this.titulo = titulo;
         this.conteudo = conteudo;
+        this.identificador = 1L;
     }
 
     public long getIdentificador() {
         return identificador;
     }
 
-    public LocalDate getDataModificacao() {
+    public String getDataModificacao() {
         return dataModificacao;
     }
 
-    public void setDataModificacao(LocalDate dataModificacao) {
+    public void setDataModificacao(String dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 
@@ -52,6 +59,14 @@ public class Documento implements Serializable{
 
     public void setConteudo(String conteudo) {
         this.conteudo = conteudo;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     @Override
@@ -71,4 +86,5 @@ public class Documento implements Serializable{
         result = 31 * result + getConteudo().hashCode();
         return result;
     }
+
 }
