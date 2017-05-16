@@ -27,6 +27,7 @@
 		<font-awesome.version>4.7.0</font-awesome.version>
 		<materializecss.version>0.98.2</materializecss.version>
         <animatecss.version>3.5.2</animatecss.version>
+		<momentjs.version>2.18.1</momentjs.version>
 	</properties>
 
 	<dependencies>
@@ -98,7 +99,11 @@
             <artifactId>animate.css</artifactId>
             <version>${animatecss.version}</version>
         </dependency>
-
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>moment</artifactId>
+			<version>${momentjs.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -54,11 +54,16 @@ public class IndexController {
     @PostMapping(value = "/post")
     @ResponseBody
     public ResponseEntity<Documento> post(@RequestBody String jsonString){
-        String[]jsonArray =  jsonString.split(",");
-        String titulo = jsonArray[0].split(":")[1].replace("\"", "");
-        String data = jsonArray[1].split(":")[1].replace("\"", "");
-        String date = jsonArray[2].split(":\"")[1].replace("\"}", "");
-        Documento documento = repository.save(new Documento(date, titulo, data));
+        String[] jsonArray = separarDadosDeStringJSON(jsonString);
+        Documento documento = repository.save(new Documento(jsonArray[2], jsonArray[0], jsonArray[1]));
         return new ResponseEntity<Documento>(documento, HttpStatus.OK);
+    }
+
+    private String[] separarDadosDeStringJSON(String jsonString){
+        String[] jsonArray =  jsonString.split(",");
+        jsonArray[0] = jsonArray[0].split(":")[1].replace("\"", "");
+        jsonArray[1] = jsonArray[1].split(":")[1].replace("\"", "");
+        jsonArray[2] = jsonArray[2].split(":\"")[1].replace("\"}", "");
+        return jsonArray;
     }
 }

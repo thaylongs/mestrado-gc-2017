@@ -3,7 +3,8 @@
  */
 $(document).ready(function() {
     'use strict';
-    var instance = CKEDITOR.replace('ckeditor');
+    CKEDITOR.replace('ckeditor');
+    moment.locale('pt-br');
 
     $.get('/last',function (data) {
         if(data) {
@@ -17,11 +18,10 @@ $(document).ready(function() {
         var editorContent = CKEDITOR.instances['ckeditor'].getData();
         var documentName = $("#document_name").val();
         documentName = documentName ? documentName : 'Documento sem nome';
-        var date = new Date();
         var json = {
             'name': documentName,
             'data': $.base64.encode(editorContent),
-            'date': date.toDateString() + " " + date.toTimeString()
+            'date': moment()
         };
 
         requestOperationState(that, 'fa-floppy-o', true);
@@ -39,7 +39,7 @@ $(document).ready(function() {
         });
     });
 
-    var requestOperationState = function (el, elIconClass, onSend) {
+    function requestOperationState (el, elIconClass, onSend) {
         if(onSend){
             el.addClass("disabled");
             var icon = el.find("i");
@@ -58,16 +58,14 @@ $(document).ready(function() {
         }
     }
     
-    var updateViewContent = function (data) {
-        var date = new Date(data.dataModificacao);
-        $("#document_message").html("Salvo em "
-            + date.toDateString() + " " + date.toTimeString().substr(0, 9));
+    function updateViewContent (data) {
+        $("#document_message").html("Última edição ocorreu "+ moment(data.dataModificacao).fromNow());
         $("#document_name").val(data.titulo);
         $("#document_name_label").addClass("active");
         $("#ckeditor").val($.base64.decode(data.conteudo));
     };
 
-    var applyAnimations = function () {
+    function applyAnimations () {
         $('#btn-save-document').animateCss('fadeInRight');
         $('#document_message').animateCss('fadeIn');
         $('.brand > i').animateCss('flipInY');
