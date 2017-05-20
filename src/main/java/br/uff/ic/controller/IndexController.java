@@ -2,10 +2,13 @@ package br.uff.ic.controller;
 
 import br.uff.ic.entity.Documento;
 import br.uff.ic.repository.DocumentoRepository;
+import br.uff.ic.service.JaversFactory;
 import org.apache.log4j.Logger;
 import org.javers.core.Javers;
 import org.javers.core.JaversBuilder;
 import org.javers.core.metamodel.object.CdoSnapshot;
+import org.javers.repository.jql.QueryBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +22,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -32,15 +36,17 @@ public class IndexController {
 
     private Javers javers;
     private DocumentoRepository repository;
+    private JaversFactory factory;
 
-    public IndexController(DocumentoRepository repository) {
-        javers = JaversBuilder.javers().build();
+    public IndexController(DocumentoRepository repository, JaversFactory factory) {
+        this.factory = factory;
+        this.javers = this.factory.getInstance();
         this.repository = repository;
     }
 
     @GetMapping
     public String getLayout(){
-        logger.info("Acessando controlador index");
+        logger.info("Acessando página inicial");
         return "index";
     }
 
@@ -56,7 +62,8 @@ public class IndexController {
     public ResponseEntity<Documento> post(@RequestBody String jsonString){
         String[] jsonArray = separarDadosDeStringJSON(jsonString);
         Documento documento = repository.save(new Documento(jsonArray[2], jsonArray[0], jsonArray[1]));
-        return new ResponseEntity<Documento>(documento, HttpStatus.OK);
+        javers.commit("gsag", documento);
+        return new ResponseEntity<>(documento, HttpStatus.OK);
     }
 
     private String[] separarDadosDeStringJSON(String jsonString){

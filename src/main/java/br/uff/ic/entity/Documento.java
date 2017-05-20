@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Entity
 public class Documento implements Serializable{
     @Id
-    @Column(name = "doc_id")
+    //@Column(name = "doc_id")
     private long identificador;
 
     @Column(name = "doc_datamodificacao")
@@ -87,4 +87,14 @@ public class Documento implements Serializable{
         return result;
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Documento{");
+        sb.append("identificador=").append(identificador);
+        sb.append(", dataModificacao='").append(dataModificacao).append('\'');
+        sb.append(", titulo='").append(titulo).append('\'');
+        sb.append(", conteudo='").append(conteudo).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

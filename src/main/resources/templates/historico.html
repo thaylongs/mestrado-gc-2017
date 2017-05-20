@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html th:lang="${#locale.language}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="spring-boot, java, webapp"/>
+    <meta name="author" content="Guilherme Alves"/>
+
+    <title>mestrado-gc-2017</title>
+    <th:block th:replace="libscss"/>
+    <th:block th:replace="libsjs"/>
+    <script th:src="@{js/scripts_historico.js}"></script>
+</head>
+<body style="height: 100%">
+    <div class="row">
+        <section class="col m10 s8">
+            <nav>
+                <div class="nav-wrapper row">
+                    <div class="back">
+                        <a th:href="@{/}" th:title="Voltar" th:alt="Voltar">
+                            <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="document-wrapper col m8 s12">
+                        <span id="document_name_data">Nome do documento</span>
+                    </div>
+                    <ul class="nav-links left col m4 s12">
+                        <li><button id="btn-restore-document" class="waves-effect waves-light btn blue" data-loading-text="Resturando...">
+                            <i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>
+                            <span data-text="Salvar">Restaurar esta revisão</span>
+                        </button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <section class="section" role="editor" aria-labelledby="ckeditorForm" style="padding-right: 5px;">
+                <form id="ckeditorForm">
+                    <textarea name="ckeditor" id="ckeditor" rows="10" cols="80"/>
+                </form>
+            </section>
+        </section>
+        <aside class="col m2 s4 animated fadeInRight">
+            <div class="historico-title">
+                <span>Histórico de Revisões</span>
+            </div>
+            <!--/*@thymesVar id="revisoesMapeadas" type="java.util.Map"*/-->
+            <div class="historico-revisions" th:each="entry : ${revisoesMapeadas}">
+                <div role="group" class="historico-revision-group">
+                    <script th:inline="javascript">
+                        /*<![CDATA[*/
+                        moment.locale('pt-br');
+                        var dataModificacao = /*[[${entry.key}]]*/ '';
+                        var data = moment(dataModificacao).format('LL');
+                        /*]]>*/
+                    </script>
+                    <div class="historico-revision-group-title">
+                        <script>document.write(data);</script>
+                    </div>
+                    <div class="historico-revision-group-item" role="tree" th:each="documento : ${entry.value}">
+                        <!--/*@thymesVar id="documento" type="br.uff.ic.entity.Documento"*/-->
+                        <script th:inline="javascript">
+                            /*<![CDATA[*/
+                            moment.locale('pt-br');
+                            var dataModificacao = /*[[${documento.getDataModificacao()}]]*/ '';
+                            var hora = moment(dataModificacao).format('LT');
+                            /*]]>*/
+                        </script>
+                        <span><script>document.write(hora);</script></span>
+                        <span class="item-hora hide" th:text="${documento.getDataModificacao()}"></span>
+                        <span class="item-titulo hide" th:text="${documento.getTitulo()}"></span>
+                        <span class="item-conteudo hide" th:text="${documento.getConteudo()}"></span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</body>
+</html>

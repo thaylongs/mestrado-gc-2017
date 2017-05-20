@@ -3,14 +3,10 @@
  */
 $(document).ready(function() {
     'use strict';
-    CKEDITOR.replace('ckeditor');
-    moment.locale('pt-br');
 
     $.get('/last',function (data) {
-        if(data) {
-            updateViewContent(data);
-            applyAnimations();
-        }
+        if(data){updateViewContent(data)};
+        applyAnimations();
     });
 
     $('#btn-save-document').on('click', function () {
@@ -70,13 +66,4 @@ $(document).ready(function() {
         $('#document_message').animateCss('fadeIn');
         $('.brand > i').animateCss('flipInY');
     };
-
-    $.fn.extend({
-        animateCss: function (animationName) {
-            var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-            this.addClass('animated ' + animationName).one(animationEnd, function() {
-                $(this).removeClass('animated ' + animationName);
-            });
-        }
-    });
 });
