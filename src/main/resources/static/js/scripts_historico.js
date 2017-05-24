@@ -3,6 +3,7 @@
  */
 $(document).ready(function() {
     'use strict';
+    $('.collapsible').collapsible();
     CKEDITOR.config.readOnly = true;
     $(".historico-revisions").css("height", (window.innerHeight - 80) + "px");
 

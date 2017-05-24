@@ -3,6 +3,7 @@ package br.uff.ic.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import java.io.Serializable;
 
 /**
@@ -20,6 +21,7 @@ public class Documento implements Serializable{
     @Column(name = "doc_titulo")
     private String titulo;
 
+    @Lob
     @Column(name = "doc_conteudo")
     private String conteudo;
 

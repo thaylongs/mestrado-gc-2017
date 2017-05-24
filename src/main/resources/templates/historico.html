@@ -13,6 +13,7 @@
     <th:block th:replace="libscss"/>
     <th:block th:replace="libsjs"/>
     <script th:src="@{js/scripts_historico.js}"></script>
+    <script th:src="@{js/scripts_chart.js}"></script>
 </head>
 <body style="height: 100%">
     <div class="row">
@@ -41,6 +42,22 @@
                 <form id="ckeditorForm">
                     <textarea name="ckeditor" id="ckeditor" rows="10" cols="80"/>
                 </form>
+            </section>
+
+            <section style="margin-right: 5px;">
+                <ul class="collapsible" data-collapsible="expandable">
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="fa fa-line-chart" aria-hidden="true"></i>
+                            <span>Gráfico de inconformidades nas revisões</span>
+                        </div>
+                        <div class="collapsible-body" style="display: none;">
+                            <div class="chartArea">
+                                <canvas id="revisionChart"></canvas>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </section>
         </section>
         <aside class="col m2 s4 animated fadeInRight">

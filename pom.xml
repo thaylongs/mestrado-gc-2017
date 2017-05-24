@@ -28,6 +28,7 @@
 		<materializecss.version>0.98.2</materializecss.version>
         <animatecss.version>3.5.2</animatecss.version>
 		<momentjs.version>2.18.1</momentjs.version>
+		<chartjs.version>2.5.0</chartjs.version>
 	</properties>
 
 	<dependencies>
@@ -103,6 +104,11 @@
 			<groupId>org.webjars.bower</groupId>
 			<artifactId>moment</artifactId>
 			<version>${momentjs.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>chartjs</artifactId>
+			<version>${chartjs.version}</version>
 		</dependency>
 	</dependencies>
 

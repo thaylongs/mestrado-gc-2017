@@ -58,7 +58,7 @@ public class HistoricoController {
     @ModelAttribute("revisoesMapeadas")
     public Map<String, List<Documento>> getRevisoes(){
         List<CdoSnapshot> snapshots = javers.findSnapshots(
-                QueryBuilder.byInstanceId(1L, Documento.class).build());
+                QueryBuilder.byInstanceId(1L, Documento.class).limit(15).build());
         return mapearPelaDataModificacao(snapshots);
     }
 }
