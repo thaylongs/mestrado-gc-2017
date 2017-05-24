@@ -15,3 +15,22 @@ $(document).ready(function() {
         }
     });
 });
+
+function requestOperationState (el, elIconClass, onSend) {
+    if(onSend){
+        el.addClass("disabled");
+        var icon = el.find("i");
+        icon.removeClass(elIconClass);
+        icon.addClass("fa-hourglass-o");
+        el.find("span").text(el.data("loading-text"));
+    }else{
+        setTimeout(function () {
+            var span = el.find("span");
+            span.text(span.data("text"));
+            var icon = el.find("i");
+            icon.removeClass("fa-hourglass-o");
+            icon.addClass(elIconClass);
+            el.removeClass("disabled");
+        },1000);
+    }
+}

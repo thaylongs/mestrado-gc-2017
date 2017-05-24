@@ -26,13 +26,11 @@ public class HistoricoController {
     private final Logger logger = Logger.getLogger(HistoricoController.class);
 
     private Javers javers;
-    private DocumentoRepository repository;
     private JaversFactory factory;
 
-    public HistoricoController(DocumentoRepository repository, JaversFactory factory) {
+    public HistoricoController(JaversFactory factory) {
         this.factory = factory;
         this.javers = this.factory.getInstance();
-        this.repository = repository;
     }
 
     @GetMapping

@@ -159,7 +159,11 @@ nav {
     border-bottom: 1px solid #f5f5f5;
 }
 
-.atual{
+.historico-revision-group-item:last-child{
+    border-bottom: 1px solid lightgray;
+}
+
+.atual, .latest{
     border: 1px solid dodgerblue;
 }
 
