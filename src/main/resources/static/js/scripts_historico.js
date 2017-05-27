@@ -27,6 +27,7 @@ $(document).ready(function() {
             $("#document_name_data").text(titulo + ", " + moment(dataModificacao).calendar());
             CKEDITOR.instances['ckeditor'].setData($.base64.decode(conteudo));
             selecionarRevisao(revisao);
+            calcularDiferencasEntreVersoes(1);
         }
         desabilitarBotaoDeRestauracaoQuandoCarregarRevisaoAtual(revisao);
     }
@@ -51,7 +52,7 @@ $(document).ready(function() {
         var json = {
             'name': versaoSelecionada.find(".item-titulo").text(),
             'data': versaoSelecionada.find(".item-conteudo").text(),
-            'date': versaoSelecionada.find(".item-hora").text()
+            'date': moment()
         };
         requestOperationState(that, 'fa-clock-o', true);
         console.log(json);

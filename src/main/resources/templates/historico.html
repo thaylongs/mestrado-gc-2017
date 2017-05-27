@@ -11,9 +11,13 @@
 
     <title>mestrado-gc-2017</title>
     <th:block th:replace="libscss"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/jsdifflib/diffview.css}"/>
     <th:block th:replace="libsjs"/>
     <script th:src="@{js/scripts_historico.js}"></script>
     <script th:src="@{js/scripts_chart.js}"></script>
+    <script th:src="@{js/jsdifflib/diffview.js}"></script>
+    <script th:src="@{js/jsdifflib/difflib.js}"></script>
+    <script th:src="@{js/scripts_diffview.js}"></script>
 </head>
 <body style="height: 100%">
     <div class="row">
@@ -46,6 +50,15 @@
 
             <section style="margin-right: 5px;">
                 <ul class="collapsible" data-collapsible="expandable">
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="fa fa-clone" aria-hidden="true"></i>
+                            <span>Veja o que mudou desde a última versão</span>
+                        </div>
+                        <div class="collapsible-body" style="display: none;">
+                            <div id="diffoutput"></div>
+                        </div>
+                    </li>
                     <li>
                         <div class="collapsible-header">
                             <i class="fa fa-line-chart" aria-hidden="true"></i>
