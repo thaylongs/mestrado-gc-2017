@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Entity
 public class Documento implements Serializable{
     @Id
-    //@Column(name = "doc_id")
+    @Column(name = "doc_id")
     private long identificador;
 
     @Column(name = "doc_datamodificacao")
@@ -25,22 +25,30 @@ public class Documento implements Serializable{
     @Column(name = "doc_conteudo")
     private String conteudo;
 
+    @Column(name = "doc_produzidopor")
+    private String produzidoPor;
+
+    @Column(name = "doc_versaoeditor")
+    private String versaoEditor;
+
     public Documento() {
     }
 
     public Documento(String dataModificacao) {
-        this(dataModificacao, null, null);
+        this(dataModificacao, null, null, null, null);
     }
 
     public Documento(String dataModificacao, String conteudo) {
-        this(dataModificacao, conteudo, null);
+        this(dataModificacao, conteudo, null, null, null);
     }
 
-    public Documento(String dataModificacao, String titulo, String conteudo) {
+    public Documento(String dataModificacao, String titulo, String conteudo, String editor, String versaoEditor){
         this.dataModificacao = dataModificacao;
         this.titulo = titulo;
         this.conteudo = conteudo;
         this.identificador = 1L;
+        this.produzidoPor = editor;
+        this.versaoEditor = versaoEditor;
     }
 
     public long getIdentificador() {
@@ -71,6 +79,22 @@ public class Documento implements Serializable{
         this.titulo = titulo;
     }
 
+    public String getProduzidoPor() {
+        return produzidoPor;
+    }
+
+    public void setProduzidoPor(String produzidoPor) {
+        this.produzidoPor = produzidoPor;
+    }
+
+    public String getVersaoEditor() {
+        return versaoEditor;
+    }
+
+    public void setVersaoEditor(String versaoEditor) {
+        this.versaoEditor = versaoEditor;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -96,6 +120,8 @@ public class Documento implements Serializable{
         sb.append(", dataModificacao='").append(dataModificacao).append('\'');
         sb.append(", titulo='").append(titulo).append('\'');
         sb.append(", conteudo='").append(conteudo).append('\'');
+        sb.append(", produzidoPor='").append(produzidoPor).append('\'');
+        sb.append(", versaoEditor='").append(versaoEditor).append('\'');
         sb.append('}');
         return sb.toString();
     }

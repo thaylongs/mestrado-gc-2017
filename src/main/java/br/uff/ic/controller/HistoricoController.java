@@ -42,7 +42,9 @@ public class HistoricoController {
     private Documento fromState(CdoSnapshotState state){
         return new Documento(state.getPropertyValue("dataModificacao").toString(),
                              state.getPropertyValue("titulo").toString(),
-                             state.getPropertyValue("conteudo").toString());
+                             state.getPropertyValue("conteudo").toString(),
+                             state.getPropertyValue("produzidoPor").toString(),
+                             state.getPropertyValue("versaoEditor").toString());
     }
 
     private String fromDataModificacao(String data){

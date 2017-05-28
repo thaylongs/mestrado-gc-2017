@@ -52,7 +52,9 @@ $(document).ready(function() {
         var json = {
             'name': versaoSelecionada.find(".item-titulo").text(),
             'data': versaoSelecionada.find(".item-conteudo").text(),
-            'date': moment()
+            'date': moment(),
+            'editor' : EDITOR.name,
+            'version': EDITOR.version
         };
         requestOperationState(that, 'fa-clock-o', true);
         console.log(json);

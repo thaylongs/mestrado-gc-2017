@@ -1,6 +1,11 @@
 /**
  * Created by guilherme on 20/05/17.
  */
+var EDITOR = {
+    name: "CKEditor",
+    version: CKEDITOR.version+"-"+CKEDITOR.revision
+};
+
 $(document).ready(function() {
     'use strict';
     CKEDITOR.replace('ckeditor');

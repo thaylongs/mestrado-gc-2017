@@ -17,7 +17,9 @@ $(document).ready(function() {
         var json = {
             'name': documentName,
             'data': $.base64.encode(editorContent),
-            'date': moment()
+            'date': moment(),
+            'editor' : EDITOR.name,
+            'version': EDITOR.version
         };
 
         requestOperationState(that, 'fa-floppy-o', true);

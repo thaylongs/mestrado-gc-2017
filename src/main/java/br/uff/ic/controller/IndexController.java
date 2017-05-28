@@ -61,7 +61,7 @@ public class IndexController {
     @ResponseBody
     public ResponseEntity<Documento> post(@RequestBody String jsonString){
         String[] jsonArray = separarDadosDeStringJSON(jsonString);
-        Documento documento = repository.save(new Documento(jsonArray[2], jsonArray[0], jsonArray[1]));
+        Documento documento = repository.save(new Documento(jsonArray[2], jsonArray[0], jsonArray[1], jsonArray[3], jsonArray[4]));
         javers.commit("gsag", documento);
         return new ResponseEntity<>(documento, HttpStatus.OK);
     }
@@ -70,7 +70,9 @@ public class IndexController {
         String[] jsonArray =  jsonString.split(",");
         jsonArray[0] = jsonArray[0].split(":")[1].replace("\"", "");
         jsonArray[1] = jsonArray[1].split(":")[1].replace("\"", "");
-        jsonArray[2] = jsonArray[2].split(":\"")[1].replace("\"}", "");
+        jsonArray[2] = jsonArray[2].split(":\"")[1].replace("\"", "");
+        jsonArray[3] = jsonArray[3].split(":")[1].replace("\"", "");
+        jsonArray[4] = jsonArray[4].split(":\"")[1].replace("\"}", "");
         return jsonArray;
     }
 }

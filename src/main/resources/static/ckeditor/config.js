@@ -28,7 +28,7 @@ CKEDITOR.editorConfig = function( config ) {
 
     config.defaultlanguage = 'pt-br';
 
-    config.language = 'pt-br'
+    config.language = 'pt-br';
 
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
