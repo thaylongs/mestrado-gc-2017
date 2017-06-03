@@ -103,6 +103,9 @@
                         <span class="item-hora hide" th:text="${documento.getDataModificacao()}"></span>
                         <span class="item-titulo hide" th:text="${documento.getTitulo()}"></span>
                         <span class="item-conteudo hide" th:text="${documento.getConteudo()}"></span>
+                        <span class="item-erros hide" th:text="${documento.getInconf_erros()}"></span>
+                        <span class="item-avisos hide" th:text="${documento.getInconf_avisos()}"></span>
+                        <span class="item-notifs hide" th:text="${documento.getInconf_notifs()}"></span>
                     </div>
                 </div>
             </div>

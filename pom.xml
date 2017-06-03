@@ -29,6 +29,7 @@
         <animatecss.version>3.5.2</animatecss.version>
 		<momentjs.version>2.18.1</momentjs.version>
 		<chartjs.version>2.5.0</chartjs.version>
+		<sweetalert2.version>6.6.2</sweetalert2.version>
 	</properties>
 
 	<dependencies>
@@ -55,6 +56,10 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+        <!--<dependency>-->
+            <!--<groupId>mysql</groupId>-->
+            <!--<artifactId>mysql-connector-java</artifactId>-->
+        <!--</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
@@ -109,6 +114,11 @@
 			<groupId>org.webjars.bower</groupId>
 			<artifactId>chartjs</artifactId>
 			<version>${chartjs.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>sweetalert2</artifactId>
+			<version>${sweetalert2.version}</version>
 		</dependency>
 	</dependencies>
 

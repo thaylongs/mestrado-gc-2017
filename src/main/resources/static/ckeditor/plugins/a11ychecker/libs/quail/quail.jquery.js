@@ -5625,7 +5625,7 @@ quail.pNotUsedAsHeader = function(quail, test, Case) {
       });
     }
   });
-};
+};*/
 
 quail.paragraphIsWrittenClearly = function (quail, test, Case) {
   test.get('$scope').find('p').each(function() {

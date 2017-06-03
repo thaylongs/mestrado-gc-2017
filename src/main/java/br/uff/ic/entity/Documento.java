@@ -1,9 +1,6 @@
 package br.uff.ic.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -25,11 +22,18 @@ public class Documento implements Serializable{
     @Column(name = "doc_conteudo")
     private String conteudo;
 
-    @Column(name = "doc_produzidopor")
-    private String produzidoPor;
+    @ManyToOne
+    @JoinColumn(name = "editor_id")
+    private Editor editor;
 
-    @Column(name = "doc_versaoeditor")
-    private String versaoEditor;
+    @Column(name = "doc_inconf_erros")
+    private Integer inconf_erros;
+
+    @Column(name = "doc_inconf_avisos")
+    private Integer inconf_avisos;
+
+    @Column(name = "doc_inconf_notifs")
+    private Integer inconf_notifs;
 
     public Documento() {
     }
@@ -42,13 +46,15 @@ public class Documento implements Serializable{
         this(dataModificacao, conteudo, null, null, null);
     }
 
-    public Documento(String dataModificacao, String titulo, String conteudo, String editor, String versaoEditor){
+    public Documento(String dataModificacao, String titulo, String conteudo, Editor editor, Integer[] inconformidades){
         this.dataModificacao = dataModificacao;
         this.titulo = titulo;
         this.conteudo = conteudo;
         this.identificador = 1L;
-        this.produzidoPor = editor;
-        this.versaoEditor = versaoEditor;
+        this.editor = editor;
+        this.inconf_erros = inconformidades[0];
+        this.inconf_avisos = inconformidades[1];
+        this.inconf_notifs = inconformidades[2];
     }
 
     public long getIdentificador() {
@@ -59,40 +65,28 @@ public class Documento implements Serializable{
         return dataModificacao;
     }
 
-    public void setDataModificacao(String dataModificacao) {
-        this.dataModificacao = dataModificacao;
-    }
-
     public String getConteudo() {
         return conteudo;
-    }
-
-    public void setConteudo(String conteudo) {
-        this.conteudo = conteudo;
     }
 
     public String getTitulo() {
         return titulo;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public Editor getEditor() {
+        return editor;
     }
 
-    public String getProduzidoPor() {
-        return produzidoPor;
+    public int getInconf_erros() {
+        return inconf_erros;
     }
 
-    public void setProduzidoPor(String produzidoPor) {
-        this.produzidoPor = produzidoPor;
+    public int getInconf_avisos() {
+        return inconf_avisos;
     }
 
-    public String getVersaoEditor() {
-        return versaoEditor;
-    }
-
-    public void setVersaoEditor(String versaoEditor) {
-        this.versaoEditor = versaoEditor;
+    public int getInconf_notifs() {
+        return inconf_notifs;
     }
 
     @Override
@@ -120,8 +114,10 @@ public class Documento implements Serializable{
         sb.append(", dataModificacao='").append(dataModificacao).append('\'');
         sb.append(", titulo='").append(titulo).append('\'');
         sb.append(", conteudo='").append(conteudo).append('\'');
-        sb.append(", produzidoPor='").append(produzidoPor).append('\'');
-        sb.append(", versaoEditor='").append(versaoEditor).append('\'');
+        sb.append(", editor=").append(editor);
+        sb.append(", erros=").append(inconf_erros);
+        sb.append(", avisos=").append(inconf_avisos);
+        sb.append(", notifs=").append(inconf_notifs);
         sb.append('}');
         return sb.toString();
     }

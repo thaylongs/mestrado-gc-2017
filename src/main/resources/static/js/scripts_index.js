@@ -14,12 +14,16 @@ $(document).ready(function() {
         var editorContent = CKEDITOR.instances['ckeditor'].getData();
         var documentName = $("#document_name").val();
         documentName = documentName ? documentName : 'Documento sem nome';
+        var issues = issuesMap;
         var json = {
             'name': documentName,
             'data': $.base64.encode(editorContent),
             'date': moment(),
             'editor' : EDITOR.name,
-            'version': EDITOR.version
+            'version': EDITOR.version,
+            'errors': ""+issues['error'],
+            'warnings':""+issues['warning'],
+            'notices':""+issues['notice']
         };
 
         requestOperationState(that, 'fa-floppy-o', true);

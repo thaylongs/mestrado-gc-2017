@@ -8,7 +8,7 @@ var EDITOR = {
 
 $(document).ready(function() {
     'use strict';
-    CKEDITOR.replace('ckeditor');
+    var instance = CKEDITOR.replace('ckeditor');
     moment.locale('pt-br');
 
     $.fn.extend({
@@ -19,6 +19,19 @@ $(document).ready(function() {
             });
         }
     });
+
+    // instance.on('focus', function(event) {
+    //     var editor = instance;
+    //     if(editor.plugins.a11ychecker){
+    //         var a11ycheckerCommand = new CKEDITOR.command(editor, {
+    //             exec: function( editor ) {
+    //                 editor.execCommand("a11ychecker");
+    //             }
+    //         });
+    //         a11ycheckerCommand.setState(CKEDITOR.TRISTATE_ON);
+    //         a11ycheckerCommand.exec(editor);
+    //     }
+    // });
 });
 
 function requestOperationState (el, elIconClass, onSend) {
