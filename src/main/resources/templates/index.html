@@ -31,12 +31,30 @@
             </div>
             <ul class="nav-links right col m5 s12">
                 <li><a th:href="@{/historico}">Histórico</a></li>
-                <li><a th:href="@{/}" class="hide">Revisões</a></li>
                 <li><button id="btn-save-document" class="waves-effect waves-light btn blue" data-loading-text="Salvando...">
                     <i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i>
                     <span data-text="Salvar">Salvar</span>
                 </button></li>
             </ul>
+            <div class="tag-wrapper col m6">
+                <div class="fixed-action-btn click-to-toggle">
+                    <a class="btn-floating btn-large tooltipped blue" data-position="left" data-delay="50" data-tooltip="Clique para adicionar uma etiqueta">
+                        <i class="fa fa-tag" aria-hidden="true"></i>
+                    </a>
+                    <ul>
+                        <li>
+                            <a class="btn-floating tooltipped grey" data-position="left" data-delay="50" data-tooltip="Escrevendo conteúdo" aria-label="Etiqueta escrevendo conteúdo" alt="Escrevendo conteúdo">
+                                <i class="fa fa-pencil" aria-hidden="true" style="height: 56px; line-height: inherit;"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="btn-floating tooltipped red" data-position="left" data-delay="50" data-tooltip="Corrigindo problemas" aria-label="Etiqueta corrigindo problemas" alt="Corrigindo problemas">
+                                <i class="fa fa-wrench" aria-hidden="true" style="height: 56px; line-height: inherit;"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </nav>
 
