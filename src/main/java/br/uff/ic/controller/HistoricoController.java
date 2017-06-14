@@ -48,7 +48,8 @@ public class HistoricoController {
                              state.getPropertyValue("titulo").toString(),
                              state.getPropertyValue("conteudo").toString(),
                              new Editor(repository.findOne(getEditorIdFromStateProperty(state.getPropertyValue("editor")))),
-                             getInconformidadesFromState(state)
+                             getInconformidadesFromState(state),
+                             state.getPropertyValue("tag").toString()
                 );
     }
 

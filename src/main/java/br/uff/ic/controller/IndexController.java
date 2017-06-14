@@ -67,7 +67,7 @@ public class IndexController {
         String[] jsonArray = separarDadosDeStringJSON(jsonString);
         Integer[] inconformidades = new Integer[]{Integer.parseInt(jsonArray[5]), Integer.parseInt(jsonArray[6]), Integer.parseInt(jsonArray[7])};
         Editor editor = editorRepository.save(new Editor(jsonArray[3], jsonArray[4]));
-        Documento documento = repository.save(new Documento(jsonArray[2], jsonArray[0], jsonArray[1], editor, inconformidades));
+        Documento documento = repository.save(new Documento(jsonArray[2], jsonArray[0], jsonArray[1], editor, inconformidades, jsonArray[8]));
         javers.commit("gsag", documento);
         return new ResponseEntity<>(documento, HttpStatus.OK);
     }
@@ -81,7 +81,8 @@ public class IndexController {
         jsonArray[4] = jsonArray[4].split(":\"")[1].replace("\"", "");
         jsonArray[5] = jsonArray[5].split(":\"")[1].replace("\"", "");
         jsonArray[6] = jsonArray[6].split(":\"")[1].replace("\"", "");
-        jsonArray[7] = jsonArray[7].split(":\"")[1].replace("\"}", "");
+        jsonArray[7] = jsonArray[7].split(":\"")[1].replace("\"", "");
+        jsonArray[8] = jsonArray[8].split(":\"")[1].replace("\"}", "");
         return jsonArray;
     }
 }

@@ -3,6 +3,7 @@
  */
 $(document).ready(function() {
     'use strict';
+    var CURRENT_DOCUMENT_TAG = "pencil";
 
     $.get('/last',function (data) {
         if(data){updateViewContent(data)};
@@ -23,7 +24,8 @@ $(document).ready(function() {
             'version': EDITOR.version,
             'errors': ""+issues['error'],
             'warnings':""+issues['warning'],
-            'notices':""+issues['notice']
+            'notices':""+issues['notice'],
+            'tag': CURRENT_DOCUMENT_TAG
         };
 
         requestOperationState(that, 'fa-floppy-o', true);
@@ -46,11 +48,24 @@ $(document).ready(function() {
         $("#document_name").val(data.titulo);
         $("#document_name_label").addClass("active");
         $("#ckeditor").val($.base64.decode(data.conteudo));
-    };
+        updateTag(data.tag);
+    }
 
     function applyAnimations () {
         $('#btn-save-document').animateCss('fadeInRight');
         $('#document_message').animateCss('fadeIn');
         $('.brand > i').animateCss('flipInY');
-    };
+    }
+
+    $('.fixed-action-btn ul li .btn-floating').on('click', function () {
+        var that = $(this);
+        updateTag(that.data('tag-icon'));
+    });
+
+    function updateTag(tag) {
+        CURRENT_DOCUMENT_TAG = tag;
+        var block = $('#tag-icon-block');
+        block.find('i').removeClass().addClass('fa fa-'+CURRENT_DOCUMENT_TAG);
+        block.animateCss('pulse');
+    }
 });

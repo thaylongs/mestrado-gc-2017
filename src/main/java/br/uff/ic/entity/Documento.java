@@ -35,18 +35,21 @@ public class Documento implements Serializable{
     @Column(name = "doc_inconf_notifs")
     private Integer inconf_notifs;
 
+    @Column(name = "doc_tag")
+    private String tag;
+
     public Documento() {
     }
 
     public Documento(String dataModificacao) {
-        this(dataModificacao, null, null, null, null);
+        this(dataModificacao, null, null, null, null, null);
     }
 
     public Documento(String dataModificacao, String conteudo) {
-        this(dataModificacao, conteudo, null, null, null);
+        this(dataModificacao, conteudo, null, null, null, null);
     }
 
-    public Documento(String dataModificacao, String titulo, String conteudo, Editor editor, Integer[] inconformidades){
+    public Documento(String dataModificacao, String titulo, String conteudo, Editor editor, Integer[] inconformidades, String tag){
         this.dataModificacao = dataModificacao;
         this.titulo = titulo;
         this.conteudo = conteudo;
@@ -55,6 +58,7 @@ public class Documento implements Serializable{
         this.inconf_erros = inconformidades[0];
         this.inconf_avisos = inconformidades[1];
         this.inconf_notifs = inconformidades[2];
+        this.tag = tag;
     }
 
     public long getIdentificador() {
@@ -89,6 +93,10 @@ public class Documento implements Serializable{
         return inconf_notifs;
     }
 
+    public String getTag() {
+        return tag;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -115,9 +123,10 @@ public class Documento implements Serializable{
         sb.append(", titulo='").append(titulo).append('\'');
         sb.append(", conteudo='").append(conteudo).append('\'');
         sb.append(", editor=").append(editor);
-        sb.append(", erros=").append(inconf_erros);
-        sb.append(", avisos=").append(inconf_avisos);
-        sb.append(", notifs=").append(inconf_notifs);
+        sb.append(", inconf_erros=").append(inconf_erros);
+        sb.append(", inconf_avisos=").append(inconf_avisos);
+        sb.append(", inconf_notifs=").append(inconf_notifs);
+        sb.append(", tag='").append(tag).append('\'');
         sb.append('}');
         return sb.toString();
     }
